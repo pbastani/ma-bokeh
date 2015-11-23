@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block js %}
+{{ plot_script | safe }}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-3">
+    <form role="form" method="post" class="form-horizontal" action="/">
+        {% csrf_token %}
+        <div class="post-form">
+            <input type="number" name="{{ form.id.name }}" value="{{ post.id }}" hidden="true">
+
+            <!-- constructors file path -->
+            <div class="row mb2" style="margin-bottom: 2px;">
+                <div class="col-md-10">
+                    {{ form.constructors_path }}
+                </div>
+            </div>
+
+            <!-- constructors file path -->
+            <div class="row mb2" style="margin-bottom: 2px;">
+                <div class="col-md-10">
+                    {{ form.processors_path }}
+                </div>
+            </div>
+
+            <!-- constructors file path -->
+            <div class="row mb2" style="margin-bottom: 2px;">
+                <div class="col-md-10">
+                    {{ form.market_data_path }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+        </div>
+    </form>
+</div>
+<div class="col-md-9">
+    {{ plot_div | safe }}
+</div>
+{% endblock %}
